@@ -28,8 +28,8 @@
         <h2 class="accent1"> {{ post.title }} </h2>
         <p> {{ post.description }} </p>
         <table class="two_column_table no_border_table"> <tr>
-            <td style="text-align: left"><a href="viewpost.php?id=' {{ post.id }} '">Mehr …</a></td>
-            <td style="font-size: 75%; text-align: right">Gepostet am {{ post.pub_date|date:"d M Y" }} um {{ post.pub_date|time:"H:i" }} von {{ post.autor }} </td>
+            <td style="text-align: left"><a href="{% url 'detail' post.id %}">Mehr …</a></td>
+            <td style="font-size: 75%; text-align: right">Gepostet am {{ post.pub_date|date:"d" }}. {{ post.pub_date|date:"M Y" }} um {{ post.pub_date|time:"H:i" }} von {{ post.autor }} </td>
             </tr>
         </table>
         </div><hr>
