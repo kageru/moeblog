@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <title>Blog</title>
+</head>
+<body>
+
+{% include "header.html" %}
+
+<div id="leftsidebar">
+    <div class="progressdiv sidebardiv leftdiv">
+        <p style="font-weight: 700; margin-bottom: 1em"> Filter by tags </p>
+
+        {% for article in latest_article_list %}
+
+        {% endfor %}
+
+        if ($temp != $row['postTags']) {
+        echo '<p style="margin-bottom: 1em"><a class="hover_link" href="blog.php?tag=' . $row['postTags'] . '">' .
+        $row['postTags'] . ' </a></p>';
+        $temp = $row['postTags'];
+        }
+
+    </div>
+</div>
+
+<div id="wrapper">
+
+    <h1 class="heading">Articles</h1>
+
+    <div>
+        <h2 class="subhead">{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <table class="two_column_table no_border_table"> <tr>
+            <td style="text-align: left"><a href="/article.php?p=' . $row['postSite'] . '">Read more…</a></td>
+            <td style="font-size: 75%; text-align: right">Gepostet am {{ article.pub_date|date:"d" }}. {{ article.pub_date|date:"M Y" }} um {{ article.pub_date|time:"H:i" }} von {{ article.autor }} </td>
+            </tr>
+        </table>
+    </div><hr>
+
+
+
+        if (isset($_GET['tag'])) {
+            $stmt = $db->prepare('SELECT postID, postTitle, creator, postDesc, postSite, postDate FROM blog_posts WHERE postTags = :postTags ORDER BY postID DESC');
+            $stmt->execute(array(':postTags' => $_GET['tag']));
+            $filtered = true;
+        } else {
+            $stmt = $db->prepare('SELECT postID, postTitle, creator, postDesc, postSite, postDate, postTags FROM blog_posts WHERE postTags <> "development" ORDER BY postID DESC');
+            $stmt->execute();
+            $filtered = false;
+        }
+
+        if ($filtered) echo '<p style=\'font-size: 80%\'>Currently showing all posts tagged with <span style="font-weight: 600">' . $_GET['tag'] . '</span>. <a href="blog.php">View all posts</a></p>';
+        if ($_GET['tag'] == 'development') echo('<span class="accent2">A quick note regarding the "development" posts: None of them should contain anything relevant to anyone reading this, as they are part of a university project that is not related to the other contents of this website.</span>');
+
+        while ($row = $stmt->fetch()) {
+
+            if ($filtered) {
+                $category = '';
+            } else {
+                $category = ' in <a href="blog.php?tag=' . $row['postTags'] . '">' . $row['postTags'] . '</a>';
+            }
+
+
+
+        }
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    ?>
+</div>
+
+{% include "footer.html" %}
+
+</body>
+</html>
