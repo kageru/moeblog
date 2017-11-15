@@ -1,0 +1,615 @@
+/* general rules */
+body {
+    z-index: -10;
+    font-family: 'Lato', 'Segoe UI', sans-serif;
+    text-align: center;
+    align-content: center;
+    overflow-y: scroll;
+    margin: 0;
+    line-height: 135%;
+}
+
+header {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+header * {
+    margin-top: 0;
+}
+
+header .dropdown-content {
+    font-size: 100%;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 250%;
+    letter-spacing: 1px;
+    font-family: 'Alike', 'Segoe UI', sans-serif;
+    margin-bottom: 1em;
+}
+
+h2 {
+    letter-spacing: 0.4px;
+    font-size: 150%;
+    font-family: 'Alike', 'Segoe UI', sans-serif;
+}
+
+h3 {
+    letter-spacing: 0.2px;
+    font-size: 130%;
+}
+
+footer {
+    width: 100%;
+    position: relative;
+    margin-top: 10%;
+    z-index: 0;
+}
+
+.dropdown {
+    z-index: 5;
+    position: relative;
+}
+
+.dropdown-content {
+    margin-top: -4px;
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdowntable {
+    width: 100%;
+}
+
+.dropdowntable td {
+    padding: 0.5em 1em;
+    height: 3em;
+}
+
+.no_border_table {
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0;
+}
+
+.no_border_table * {
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 0;
+}
+
+.headertable {
+    height: auto;
+    width: 100%;
+}
+
+header img {
+    margin: 0 !important;
+    -webkit-filter: saturate(1);
+    filter: saturate(1);
+    transition-duration: 300ms;
+}
+
+header img:hover {
+    transition-duration: 300ms;
+    -webkit-filter: saturate(1.5);
+    filter: saturate(1.5);
+}
+
+::-webkit-scrollbar {
+    width: 0.8em;
+    background-color: #292929;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #171717;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #000;
+}
+
+ul {
+    text-align: left;
+}
+
+li {
+    margin-top: 4px;
+}
+
+.accent1 { /* for code completion */
+}
+
+img {
+    margin-top: 15px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+/* basic layout classes */
+
+.index_body {
+    background-size: auto 60%;
+    background: #1a1714 url("2hu.png") no-repeat fixed right 3% bottom 5%;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    margin-top: 1em;
+}
+
+/* the div with patchouli */
+.bottom_right_div {
+    z-index: 5;
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+    width: 10%;
+    height: auto;
+}
+
+.bottom_right_div img {
+    height: auto;
+    width: 100%;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+    animation-duration: 500ms;
+}
+
+.sidebardiv {
+    border-radius: 15px;
+    height: auto;
+    padding: 10px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#leftsidebar {
+    position: absolute;
+    margin-top: 1.5em;
+    left: 0;
+    width: 25%;
+    height: 100%;
+}
+
+#rightsidebar {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: 0;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    height: 60%;
+}
+
+.progressdiv {
+    text-align: left;
+}
+
+.chatangodiv {
+    font-family: 'Lato', 'Segoe UI', sans-serif !important;
+    text-align: center;
+    position: absolute;
+    background-color: transparent;
+    border: 0;
+    border-right: 0 !important;
+    border-radius: 15px 0 0 0;
+    margin-right: 0 !important;
+    width: 70% !important;
+    height: 100%;
+    padding: 10px;
+    right: 0;
+}
+
+.chatangobg {
+    z-index: -2;
+}
+
+.leftdiv {
+    left: 0;
+    width: 60%;
+}
+
+.rightdiv {
+    right: 0;
+    width: 60%;
+}
+
+#wrapper {
+    text-align: left;
+    margin: auto;
+    width: 50%;
+}
+
+/*  forces 720p images to 100% size (to avoid client-sided resizing) */
+.wrapper_article {
+    max-width: 90% !important;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.content {
+    text-align: left;
+}
+
+/* frequently used classes */
+
+#return_to_index {
+    text-align: right;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.title {
+    text-align: center;
+    font-size: 120% !important;
+}
+
+.heading {
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 250%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-family: 'Alike', 'Segoe UI', sans-serif;
+}
+
+.subhead {
+    letter-spacing: 1px;
+    font-size: 160%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    font-family: 'Alike', 'Segoe UI', sans-serif;
+}
+
+.ninjatext {
+    font-size: 60%;
+    margin-top: 6em;
+}
+
+form.add_comment * {
+    border-radius: 5px;
+    font-family: 'Lato', 'Segoe UI', sans-serif;
+    outline: none !important;
+}
+
+form.add_comment input[type=text] {
+    min-width: 15%;
+    margin-top: 0.2em;
+    background-color: transparent;
+}
+
+form.add_comment textarea {
+    margin-top: 0.5em;
+    padding: 5px;
+    min-width: 50%;
+    max-width: 75%;
+    height: 12em;
+    background-color: transparent;
+}
+
+form.add_comment input[type=submit] {
+    font-weight: 600;
+    padding: 5px 15px;
+    transition-duration: 500ms;
+    cursor: pointer;
+    margin-bottom: 3em;
+}
+
+form.add_comment input[type=submit]:hover {
+    background-color: transparent;
+}
+
+.comment {
+    margin-bottom: 2em;
+}
+
+/* misc classes for general use */
+
+.centered_list {
+    text-align: center;
+    align-content: center;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.download_centered {
+    line-height: 200%;
+    text-align: center;
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.halfwidth {
+    width: 49%;
+}
+
+.rounded {
+    border-radius: 20px;
+}
+
+.spoilerbox_expand_element {
+    font-weight: 600;
+    margin-top: 0.7em;
+    cursor: pointer;
+}
+
+.spoilerbox_expand_element * {
+    font-weight: 500;
+}
+
+.fakelink {
+    cursor: pointer;
+}
+
+.two_column_table {
+    width: 100%;
+}
+
+.two_column_table td {
+    width: 50%;
+    text-align: center;
+}
+
+.two_column_table img {
+    margin-top: 1em;
+}
+
+.img_expandable {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+/* misc classes for articles */
+
+.path {
+    font-size: 70%;
+    word-wrap: break-word;
+}
+
+.paramtable {
+    border: none;
+}
+
+.paramtable td {
+    border: none;
+    padding: 5px 20px;
+}
+
+.paramtable_main {
+    width: 70%;
+}
+
+.code {
+    font-weight: normal;
+    display: block;
+    line-height: 130%;
+    margin: 15px auto;
+    font-size: 80%;
+    text-align: left;
+    padding: 4px 8px 2px;
+    font-family: "Lucida Console", monospace;
+    width: 90%;
+}
+
+.vapoursynth {
+    line-height: 130%;
+    margin: 15px auto;
+    font-size: 80%;
+    text-align: left;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    font-family: "Lucida Console", monospace;
+    width: 90%;
+}
+
+.avisynth {
+    line-height: 130%;
+    margin: 15px auto;
+    font-size: 80%;
+    text-align: left;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    font-family: "Lucida Console", monospace;
+    width: 90%;
+}
+
+/* classes for full-screen image overlays */
+
+.noscroll {
+    overflow: hidden !important;
+}
+
+#overlay {
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 9;
+    visibility: hidden;
+}
+
+#videooverlay {
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 9;
+    visibility: hidden;
+}
+
+[aria-hidden="true"] {
+    display: none;
+}
+
+[aria-hidden="false"] {
+    display: block;
+}
+
+.fullimage {
+    width: auto;
+    height: auto;
+    opacity: 0;
+    animation-name: fadein;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeoutbg {
+    animation-name: fadein;
+    animation-fill-mode: backwards;
+    animation-direction: reverse;
+    animation-duration: 300ms;
+}
+
+.error {
+    transition-duration: 300ms;
+    font-size: 130%;
+    padding: 0.75em;
+    min-width: 20%;
+    max-width: 40%;
+    margin: 1em auto;
+    background-color: transparent;
+    border-radius: 2em;
+}
+
+.reply {
+    transition-duration: 300ms;
+    font-size: 80%;
+    padding: 0.2em 0.5em;
+    margin-left: 5em;
+    background-color: transparent;
+    border-radius: 2em;
+}
+
+.approve {
+    transition-duration: 300ms;
+    padding: 0.3em 0.7em;
+    min-width: 10%;
+    margin: auto;
+    background-color: transparent;
+    border-radius: 2em;
+}
+
+form input.error.nuke {
+    text-align: center;
+    padding: 0.3em 0.7em;
+    min-width: 10%;
+    max-width: 100%;
+    font-size: 100%;
+    margin: auto !important;
+}
+
+form input {
+    border: 1px solid #999999;
+    border-bottom-color: #cccccc;
+    border-right-color: #cccccc;
+    padding: 5px;
+    font-size: 1.0em;
+    margin: 2px;
+}
+
+/* chatango-related rules */
+
+#HEAD {
+    display: none !important;
+}
+
+/* classes used in the admin panel */
+
+#login {
+    border: 1px solid #AEAEAE;
+    margin: 100px auto 0;
+    padding: 0;
+    width: 300px;
+}
+
+#adminmenu {
+    padding-left: 0;
+}
+
+#adminmenu li {
+    float: left;
+    list-style: none;
+    margin-right: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+.admintable {
+    border-collapse: collapse;
+    width: 98%;
+    text-align: left;
+    border: 1px solid #DDDDDD;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.admintable th {
+    background-color: #7a3d00;
+    border: 1px solid #BBBBBB;
+    padding: 3px 6px;
+    font-weight: normal;
+}
+
+.admintable tr td {
+    border: 1px solid #DDDDDD;
+    padding: 5px 6px;
+}
+
+.admintable tr.alt td {
+    background-color: #673300;
+}
+
+.admintable tr:hover {
+    transition-duration: 500ms;
+    background-color: #6a3700;
+    color: #ffffff;
+}

@@ -1,22 +1,22 @@
 <header>
     <table class="headertable no_border_table">
         <tr>
-            <td><a href="admin/index.php" style="cursor: default;">
+            <td>
                 {% load static %}
                 <img src="{% static "left.jpg" %}"></a>
             </td>
             <td>
                 {% load static %}
-                <a href="../index.php"> <img src="{% static "news.jpg" %}"></a>
+                <a href="/news"> <img src="{% static "news.jpg" %}"></a>
             </td>
             <td class="dropdown">
                 {% load static %}
-                <img src=""{% static "projekte.jpg"">
+                <img src="{% static "projekte.jpg" %}">
                 <div class="dropdown-content">
                     <table class="dropdowntable">
                         <tr>
                             <td>
-                                <a target="_blank" href="ddl/fs">Direktdownload</a>
+                                <a target="_blank" href="/ddl/fs">Direktdownload</a>
                             </td>
                         </tr>
                         <tr>
@@ -34,11 +34,11 @@
             </td>
             <td>
                 {% load static %}
-                <a href="../team.php"> <img src="{% static "team.jpg" %}"></a>
+                <a href="/team"> <img src="{% static "team.jpg" %}"></a>
             </td>
             <td>
                 {% load static %}
-                <a href="../faq.php"> <img src="{% static "faq.jpg" %}"></a>
+                <a href="/faq"> <img src="{% static "faq.jpg" %}"></a>
             </td>
             <td>
                  {% load static %}

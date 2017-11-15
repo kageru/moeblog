@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+    <title>FAQ</title>
+</head>
+<body>
+
+{% include "header.html" %}
+
+<div id="wrapper">
+
+    <h1 class="accent1">FAQ</h1>
+    <hr/>
+
+    <h3 class="accent1">Hilfe, mein Video ruckelt.</h3>
+    <p>Das kann mehrere Ursachen haben.
+    <ol>
+        <li>
+            Du versuchst, unsere Subs auf einer Kartoffel zu schauen. In dem Fall kann ich dir leider auch nicht
+            helfen.
+        </li>
+        <li> Du verwendest VLC/Windows Media Player/Vergleichbares. Es gibt einige Player, die dazu in der Lage sind,
+            10bit Anime abzuspielen. Bekannte Beispiele sind MPC (mit entsprechenden Codecs) und mpv. Letzterer
+            funktioniert
+            ohne weitere Einstellungen, erfordert jedoch eine gute Grafikkarte und hat im Gegensatz zu MPC selbst
+            keinerlei Filter. MPC bietet außerdem mehr Einstellungsmöglichkeiten, um auch auf älterer Hardware noch zu
+            funktionieren. Das unten verlinkte Installationspaket kann viele der
+            Konfigurationsschritte selbständig erledigen.<br>
+            <a href="https://mpv.srsfckn.biz/" target="_blank">mpv</a><br>
+            <a target="_blank" href="http://haruhichan.com/forum/showthread.php?7545-KCP-Kawaii-Codec-Pack">MPC mit
+                Filtern/Codecs</a><br>
+            <a target="_blank" href="http://files.nyaa.se/HOW_DO_I_PLAYED_BACK.txt">Manueller Setupguide für
+                MPC/madVR</a>
+        </li>
+        <li>
+            Du versuchst, die x265-Version eines Videos auf einem alten PC/Laptop/Smartphone abzuspielen. x265 bietet
+            zwar deutlich höhere Kompressionseffizienz, benötigt jedoch entsprechend mehr Leistung beim Abspielen. Wenn
+            du bereits einen der unter 2. genannten Mediaplayer verwendest und immer noch Probleme hast, reicht die
+            Leistung deines Abspielgerätes nicht aus. In diesem Fall musst du auf die x264-Versionen zurückgreifen.
+        </li>
+    </ol>
+    <h3 class="accent1">Was genau bedeuten „x264“ und „x265“?</h3>
+    <p>
+        x264 und x265 bezeichnen Software, die zur Videoenkodierung verwendet wird. x264 ist Teil des AVC-Standards, der
+        z.B. auf Blurays zum Einsatz kommt. Die x264-Versionen sollten auf den meisten Computern und auf modernen
+        Smartphones ohne Probleme funktionieren.</p>
+    <p>x265 gehört zum neueren HEVC-Standard. Es erreicht dieselbe Bildqualität bei merklich kleineren Dateien, benötigt
+        jedoch mehr Leistung, um abgespielt zu werden. Da ältere Computer, Laptops und Smartphones damit Probleme haben
+        könnten, bieten wir die x264-Version als Ausweichmöglichkeit an. Die x265-Version ist also für Nutzer, die einen
+        halbwegs modernen PC besitzen und Festplattenspeicher sparen wollen. Für die Wiedergabe dieser Versionen ist ein
+        aktueller Media Player vonnöten, da ältere Player das Format nicht unterstützen. Details dazu stehen bei der
+        Frage über dieser.
+    </p>
+    <h3 class="accent1">Warum macht ihr keine 1080p-Versionen eurer Releases?</h3>
+    <p>
+        Die Produktionsauflösung vieler Animes liegt weit unter 1080p. Der Anime wird also in beispielsweise 720p
+        gezeichnet und animiert und anschließend für die Blu-ray auf 1080p hochskaliert. Man kann diese Skalierung
+        rückgängig machen und somit deutlich kleinere Dateien releasen, die immer noch alle Details des Originalvideos
+        haben. Wenn die Produktionsauflösung eines Anime über 720p liegt, wird es meist auch eine 1080p-Version geben,
+        aber da die meisten Studios zurzeit noch auf 720p arbeiten, wird das nur selten der Fall sein. <a
+                href="article.php?p=resolutions">Mehr Informationen dazu gibt es hier.</a>
+    </p>
+    <h3 class="accent1">Könnt ihr bitte &lt;irgendeinen Anime> subben?</h3>
+    <p>
+        Damit wir einen Anime subben, müssen einige Bedingungen erfüllt sein:</p>
+    <ul>
+        <li>Der Anime darf nicht in DACH lizenziert sein. Aus rechtlichen Gründen ist es leider nicht möglich, Fansubs
+            zu Animes zu veröffentlichen, wenn diese im deutschsprachigen Raum lizenziert wurden.
+        </li>
+        <li>Der Anime interessiert uns. Wir werden nur Zeit in Projekte investieren, die uns interessieren und bei denen
+            wir der Meinung sind, dass sie den Aufwand wert sind.
+        </li>
+        <li>Es darf noch keinen guten deutschen Sub davon geben. Unter einem „guten Sub“ verstehen wir einen sprachlich
+            ansprechenden Untertitel mit gutem Video. Da viele deutsche Gruppen nur TV-Versionen ihrer Projekte
+            veröffentlich, gibt es viele Animes, für die es zwar ordentliche Untertitel, aber nur mittelmäßige Encodes
+            gibt. In diesen Fällen sind wir gerne bereit, unsere eigenen Subs mit Bluray-Video zu releasen. Wenn es
+            bereits einen deutschen Sub mit Bluray-Video gibt, wir die Leistung der Subgruppe jedoch als unzureichend
+            einstufen, ist es auch möglich, dass wir unsere eigene Version erstellen.
+        </li>
+    </ul>
+    <h3 class="accent1">Wie kann ich euch kontaktieren?</h3>
+    <p>Auf der <a href="team.php">Teamseite</a> findest du unsere Discord-Namen. <span
+                style="text-decoration: line-through;">Wenn du Glück hast und einer von uns
+        die Motivation gefunden hat, gibt es in der rechten Sidebar ein Chatango</span>. Jauchzet, frohlocket, auf,
+        preiset das Chatango.</p>
+    <h3 class="accent1">Wer seid ihr? Ich habe noch nie von euch gehört.</h3>
+    <p>
+        Wir sind ein paar Studenten mit zu viel Freizeit, die der Meinung sind, dass das <a
+                href="https://de.wikipedia.org/wiki/%C3%96konomisches_Prinzip#Extremumprinzip_.28auch_Optimumprinzip.29"
+                target="_blank">Optimalprinzip</a>
+        dem
+        <a href="https://de.wikipedia.org/wiki/%C3%96konomisches_Prinzip#Maximalprinzip"
+           target="_blank">Maximalprinzip</a> in einigen Situationen überlegen sein kann, von der deutschen Fansubszene
+        jedoch sträflich vernachlässigt wird. Das bedeutet nicht, dass unsere Subs deswegen von niedrigerer Qualität
+        sind. Wir investieren unsere Zeit lediglich in die relevanten Komponenten des Endprodukts.
+    </p>
+    <h3 class="accent1">So redet doch kein Mensch! Bist du etwa BWLer/Anwalt/Beamter?</h3>
+    <p>Weder noch, ich befinde mich nur in einem Umfeld, in dem etwas geistige Korruption kaum vermeidbar ist.</p>
+    <h3 class="accent1">Und was heißt das Optimalgeschwafel jetzt im Klartext?</h3>
+    <p>Ganz einfach:
+    <ul>
+        <li>Timing und Typeset werden größtenteils aus dem Englischen übernommen und nur
+            übersetzt/angepasst.
+        </li>
+        <li> Karaoke für Opening und Ending gibt es nur, wenn einer der Beteiligten eine Idee sowie Zeit und Motivation
+            für die Umsetzung hat.
+        </li>
+        <li>Der Großteil unserer Aufmerksamkeit gilt dem Skript, also den Untertiteln, die du am Ende auf deinem
+            Bildschirm siehst. Statt fünf Stunden lang einen Lauftext im Bildhintergrund zu übersetzen und einzufügen,
+            der dann nur
+            drei Sekunden sichtbar ist, nutzen wir die Zeit lieber, um uns auf das eigentlich Wichtige zu fokussieren:
+            die Untertitel.
+        </li>
+    </ul>
+    Wenn dir der Sinn nach qualitativ höherwertigen Subs steht, kannst du dich gerne bei <a target="_blank"
+                                                                                            href="http://kampfkuchen.de/">anderen</a>
+    <a target="_blank" href="http://nanaone.net/">deutschen</a> <a href="http://chinurarete-subs.org/frontend/home.php"
+                                                                   target="_blank">Gruppen</a> umsehen.<br>
+    Wir respektieren die Arbeit dieser Gruppen und wollten lediglich einen anderen Ansatz ausprobieren.
+    <h3 class="accent1">Jetzt mal angenommen, man würde bei diesem Wahnsinn mitwirken wollen …?</h3>
+    <p>
+        Wir nehmen gerne neue Mitglieder auf. Bei Timern, Typesettern und KFXer setzen wir zumindest minimale
+        Grundkenntnisse voraus (wir werden euch nicht erklären, wie man in Aegisub die Schriftart umstellt), Übersetzer,
+        Edits und QCs benötigen keine Vorkenntnisse. Encoder brauchen wir derzeit keine.<br>
+        Bei Interesse könnt ihr uns auf verschiedenen Wegen erreichen. Bevorzugt ist Discord, wo ihr euch bei
+        kageru#7109 oder Attila#3924 melden könnt. Solltet ihr kein Discord haben, könnt ihr auch im Chatango anfragen,
+        um andere Verständigungswege (Skype, TeamSpeak, Steam, E-Mail, IRC etc.) abzusprechen.
+    </p>
+    <h3 class="accent1">Woher ist das Bild im Header?</h3>
+    <p>
+        <a href="https://yande.re/post/show/328988" target="_blank">yande.re </a>und
+        <a target="_blank"
+           href="http://www.pixiv.net/member_illust.php?mode=medium&illust_id=52143965">pixiv</a>
+    </p>
+    <h3 class="accent1">Warum „afk“-Subs?</h3>
+    <p>
+        Wir brauchten einen Namen (nicht, dass Namen irgendwas bedeuten würden, aber irgendwas braucht man ja, um
+        wiedererkannt zu werden), also haben wir unsere Initialen genommen und das sinnvollste der möglichen Akronyme
+        ausgewählt. Außerdem müssen wir uns so keine Gedanken um einen Releasetag machen. Die einzige Gruppe mit
+        einem ähnichen Tag ist [a.f.k.], eine englischsprachige Gruppe, die es seit Jahren nicht mehr gibt, also sollte
+        kaum Verwechslungsgefahr bestehen.
+    </p>
+    <h3 class="accent1">Du hast eine Frage vergessen!</h3>
+    <p>Wenn noch irgendetwas ungeklärt ist, kannst du gerne einen von uns via Discord anschreiben. Die Kontaktdetails
+        stehen auf der <a href="team.php">Teamseite</a>. Alternativ kannst du auch das Chatango in der rechten
+        Seitenleiste verwenden.
+    </p>
+
+</div>
+
+{% include "footer.html" %}
+
+</body>
+</html>

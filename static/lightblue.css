@@ -1,0 +1,180 @@
+body {
+    background: #c5ebde url("../res/bg_b.png") repeat fixed;
+    color: #222;
+}
+
+header img {
+    filter: saturate(0.85) brightness(0.8) hue-rotate(90deg) blur(30px);
+    transition-duration: 600ms;
+}
+.headertable{
+    background-color: rgba(0, 118, 0, 0.18);
+}
+
+header img:hover {
+    filter: saturate(1.5) brightness(0.8) hue-rotate(0deg) blur(0px) !important;
+}
+
+footer {
+    background-color: rgba(53, 155, 53, 0.1);
+}
+
+footer a {
+    color: #216935;
+}
+
+.dropdowntable td {
+    background-color: #cccccc;
+}
+
+.dropdowntable td:hover {
+    background-color: #b2c6af;
+}
+
+::selection {
+    background-color: transparent;
+    color: #216935 !important;
+}
+
+hr {
+    color: #216935;
+    background-color: #216935;
+}
+
+.sidebardiv {
+    background-color: rgba(29, 95, 47, 0.2);
+}
+
+.chatangodiv {
+    filter: invert() saturate(0.7) hue-rotate(260deg); /* can't style individual elements in iframes */
+    background-color: rgba(216, 118, 83, 0.1) !important;
+    border: solid 1px #963200;
+}
+
+.hover_link {
+    color: #00516e !important;
+}
+
+.hover_link:hover {
+    color: #006c8a !important;
+}
+
+.fakelink {
+    color: #226e35;
+}
+
+.ninjalink {
+    color: #222222;
+}
+
+a {
+    color: #226e35;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0b6823;
+}
+
+.heading {
+    color: #1d5f2f;
+}
+
+.subhead {
+    color: #1d5f2f;
+}
+
+form.add_comment * {
+    color: #222;
+}
+
+form.add_comment * :focus {
+    border: solid 2px #1d5f2f;
+}
+
+form.add_comment input[type=text] {
+    border: solid 2px #1d5f2f;
+}
+
+form.add_comment input[type=text]:focus {
+    border: solid 2px #1d5f2f;
+}
+
+form.add_comment textarea {
+
+    border: solid 2px #1d5f2f;
+}
+
+form.add_comment input[type=submit] {
+    background-color: #1d5f2f;
+    border: solid 2px #1d5f2f;
+    color: #ccc;
+}
+
+form.add_comment input[type=submit]:hover {
+    color: #222;
+}
+
+.comment_div {
+    outline: #1d5f2f;
+}
+
+.code {
+    border: solid 1px #333333;
+    background-color: rgba(74, 74, 74, 0.16);
+}
+
+.vapoursynth {
+    border: solid 1px #0084d2;
+    background-color: rgba(0, 132, 210, 0.16);
+}
+
+.avisynth {
+    border: solid 1px #174b00;
+    background-color: rgba(23, 75, 0, 0.16);
+}
+
+.error {
+    border: 2px solid #A50000;
+    color: #A50000;
+}
+
+.error:hover {
+    color: #ccc;
+    background-color: #4b0000;
+    border: 2px solid #4b0000;
+}
+
+.reply {
+    border: 2px solid #1d5f2f;
+    color: #1d5f2f;
+}
+
+.reply:hover {
+    color: #ccc;
+    background-color: #1d5f2f;
+    border: 2px solid #1d5f2f;
+}
+
+.approve {
+    border: 2px solid #00a500;
+    color: #00a500;
+}
+
+.approve:hover {
+    color: #ccc;
+    background-color: #007800;
+    border: 2px solid #007800;
+}
+.accent1 {
+    color: #1d5f2f;
+}
+.accent2 {
+    color: #1d5f2f;
+}
+.progressbar {
+    background-color: #1d5f2f;
+}
+img[src$=svg]{
+    filter: invert() hue-rotate(260deg);
+}

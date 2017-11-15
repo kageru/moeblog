@@ -1,0 +1,179 @@
+body {
+    background: #1a1714 url("bg.png") repeat fixed;
+    color: #ccc;
+}
+
+footer {
+    background-color: rgba(26, 23, 20, 0.51);
+}
+
+footer a {
+    color: #d26900;
+}
+
+.dropdowntable td {
+    background-color: #222;
+}
+
+.dropdowntable td:hover {
+    background-color: #1a1714;
+}
+
+::selection {
+    background-color: transparent;
+    color: #cd7400;
+}
+
+hr {
+    color: #693600;
+    background-color: #693a00;
+}
+
+.sidebardiv {
+    background-color: rgba(26, 23, 20, 0.51);
+}
+
+.ninjatext {
+    color: #251b18;
+}
+
+.chatangobg {
+    background-color: rgba(26, 23, 20, 0.51);
+    border: solid 1px #cd7400;
+}
+
+.chatangodiv {
+    border-top: solid 1px #cd7400;
+}
+
+.hover_link {
+    color: #ccc !important;
+}
+
+.hover_link:hover {
+    color: #86cbd2 !important;
+}
+
+.fakelink {
+    color: #86cbd2;
+}
+
+.ninjalink {
+    color: #cccccc;
+}
+
+a {
+    color: #86cbd2;
+    text-decoration: none;
+}
+
+.heading {
+    color: #cd7100;
+}
+
+.subhead {
+    color: #cd7400;
+}
+
+form.add_comment * {
+    color: #ccc;
+}
+
+form.add_comment * :focus {
+    border: solid 2px #f59500;
+}
+
+form.add_comment input[type=text] {
+    border: solid 2px #cd7400;
+}
+
+form.add_comment input[type=text]:focus {
+    border: solid 2px #f59500;
+}
+
+form.add_comment textarea {
+
+    border: solid 2px #cd7400;
+}
+
+form.add_comment input[type=submit] {
+    background-color: #cd7400;
+    border: solid 2px #cd7400;
+    color: #1a1714;
+}
+
+form.add_comment input[type=submit]:hover {
+    color: #ccc;
+}
+
+.comment_div {
+    outline: #cd7400;
+}
+
+code, .code {
+    border: solid 1px #bbb;
+    background-color: rgba(74, 74, 74, 0.25);
+}
+
+.vapoursynth {
+    border: solid 1px #0084c4;
+    background-color: rgba(0, 42, 65, 0.25);
+}
+
+.avisynth {
+    border: solid 1px #2a9500;
+    background-color: rgba(19, 65, 0, 0.25);
+}
+
+.error {
+    border: 2px solid #A50000;
+    color: #A50000;
+}
+
+.error:hover {
+    color: #ccc;
+    background-color: #4b0000;
+    border: 2px solid #4b0000;
+}
+
+.reply {
+    border: 2px solid #cd7400;
+    color: #cd7400;
+}
+
+.reply:hover {
+    color: #ccc;
+    background-color: #cd7400;
+    border: 2px solid #cd7400;
+}
+
+.approve {
+    border: 2px solid #00a500;
+    color: #00a500;
+}
+
+.approve:hover {
+    color: #ccc;
+    background-color: #007800;
+    border: 2px solid #007800;
+}
+
+.accent1 *, .accent1 {
+    color: #e17800;
+}
+
+.accent2 *, .accent2 {
+    color: #cd7400;
+}
+
+.progressbar {
+    background-color: #b95d00;
+}
+
+.progressbar_outline{
+    border: solid 2px #332f29;
+}
+
+.ssllabs {
+    filter: invert() hue-rotate(180deg);
+}
