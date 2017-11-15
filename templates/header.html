@@ -2,13 +2,16 @@
     <table class="headertable no_border_table">
         <tr>
             <td><a href="admin/index.php" style="cursor: default;">
-                <img src="left.jpg"></a>
+                {% load static %}
+                <img src="{% static "left.jpg" %}"></a>
             </td>
             <td>
-                <a href="../index.php"> <img src="res\news.jpg"></a>
+                {% load static %}
+                <a href="../index.php"> <img src="{% static "news.jpg" %}"></a>
             </td>
             <td class="dropdown">
-                <img src="projekte.jpg">
+                {% load static %}
+                <img src=""{% static "projekte.jpg"">
                 <div class="dropdown-content">
                     <table class="dropdowntable">
                         <tr>
@@ -26,16 +29,20 @@
                 </div>
             </td>
             <td>
-                <a href="blog.php"><img src="blog.jpg"></a>
+                {% load static %}
+                <a href="blog.php"><img src="{% static "blog.jpg" %}"></a>
             </td>
             <td>
-                <a href="../team.php"> <img src="team.jpg"></a>
+                {% load static %}
+                <a href="../team.php"> <img src="{% static "team.jpg" %}"></a>
             </td>
             <td>
-                <a href="../faq.php"> <img src="faq.jpg"></a>
+                {% load static %}
+                <a href="../faq.php"> <img src="{% static "faq.jpg" %}"></a>
             </td>
             <td>
-                <img src="right.jpg">
+                 {% load static %}
+                <img src="{% static "right.jpg" %}">
             </td>
         </tr>
     </table>

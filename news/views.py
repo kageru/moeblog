@@ -6,4 +6,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, '/static/header.html')
+    return render(request, 'header.html')
