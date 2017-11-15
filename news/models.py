@@ -9,3 +9,5 @@ class Post(models.Model):
     description = models.TextField()
     content = models.TextField()
 
+    def __str__(self):
+        return self.title
