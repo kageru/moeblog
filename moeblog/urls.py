@@ -24,6 +24,10 @@ def faq(request):
     return render(request, 'faq/faq.html')
 
 
+def contact(request):
+    return render(request, 'contact/contact.html')
+
+
 def team(request):
     return render(request, 'team/team.html')
 
@@ -31,6 +35,7 @@ def team(request):
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^faq/', faq, name='faq'),
+    url(r'^contact/', contact, name='contact'),
     url(r'^team/', team, name='team'),
     url(r'^news/', include('news.urls')),
     url(r'^admin/', admin.site.urls),
