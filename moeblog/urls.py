@@ -17,26 +17,14 @@ from django.shortcuts import render
 from django.urls import path
 from django.conf.urls import include, url
 from django.contrib import admin
-from news import views
-
-
-def faq(request):
-    return render(request, 'faq/faq.html')
-
-
-def contact(request):
-    return render(request, 'contact/contact.html')
-
-
-def team(request):
-    return render(request, 'team/team.html')
-
+import news.views
+from moeblog import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^faq/', faq, name='faq'),
-    url(r'^contact/', contact, name='contact'),
-    url(r'^team/', team, name='team'),
+    url(r'^$', news.views.index, name='index'),
+    url(r'^faq/', views.faq, name='faq'),
+    url(r'^contact/', views.contact, name='contact'),
+    url(r'^team/', views.team, name='team'),
     url(r'^news/', include('news.urls')),
     url(r'^admin/', admin.site.urls),
 ]

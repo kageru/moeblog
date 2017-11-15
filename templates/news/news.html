@@ -23,6 +23,18 @@
 
     <h1 class="accent1">Releases</h1>
 
+    {% for post in latest_post_list %}
+    <div>
+        <h2 class="accent1"> {{ post.title }} </h2>
+        <p> {{ post.description }} </p>
+        <table class="two_column_table no_border_table"> <tr>
+            <td style="text-align: left"><a href="viewpost.php?id=' {{ post.id }} '">Mehr …</a></td>
+            <td style="font-size: 75%; text-align: right">Gepostet am ' . date('j.m.y \u\m  H:i', strtotime($row['postDate'])) . ' von ' . $row['creator'] . '</td>
+            </tr>
+        </table>
+        </div><hr>
+    {% endfor %}
+
 </div>
 
 {% include "footer.html" %}
