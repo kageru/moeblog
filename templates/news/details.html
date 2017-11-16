@@ -27,16 +27,16 @@
         <p>{{ post.content }}</p>
     </div>
 
-<h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
+    <h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
 
-<form id='comment_box' class='add_comment' action='' method='post'>
-    <p><label>Your name</label><br/><input type='text' name='creator' value=''></p>
+    <form id='comment_box' class='add_comment' action='' method='post'>
+        <p><label>Your name</label><br/><input type='text' name='creator' value=''></p>
 
-    <p><label>Message</label><br/>
-        <textarea id=comment_input name='message' cols='60' rows='10'></textarea></p>
+        <p><label>Message</label><br/>
+            <textarea id=comment_input name='message' cols='60' rows='10'></textarea></p>
 
-    <p><input type='submit' name='submit' value='Submit'></p>
-</form>
+        <p><input type='submit' name='submit' value='Submit'></p>
+    </form>
 
     {% for comment in comments %}
     <div class="comment_div">
