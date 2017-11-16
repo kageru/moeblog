@@ -14,8 +14,8 @@ class Article(models.Model):
 
 
 class Tag(models.Model):
-    post_id = models.ForeignKey('Article', on_delete=models.CASCADE)
+    article_id = models.ForeignKey('Article', on_delete=models.CASCADE)
     name = models.CharField(max_length=16)
 
     def __str__(self):
-        return 'Post: ' + str(self.post_id) + ' --- Tag: ' + str(self.name)
+        return 'Post: ' + str(self.article_id) + ' --- Tag: ' + str(self.name)
