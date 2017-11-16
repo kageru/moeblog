@@ -46,7 +46,7 @@
         <p> {{ article.description }} </p>
         <table class="two_column_table no_border_table">
             <tr>
-                <td style="text-align: left"><a href="/article.php?p=' . $row['postSite'] . '">Read more…</a></td>
+                <td style="text-align: left"><a href="{% url 'article' article.title %}">Read more…</a></td>
                 <td style="font-size: 75%; text-align: right">Gepostet am {{ article.pub_date|date:"d" }}.
                     {{ article.pub_date|date:"M Y" }} um {{ article.pub_date|time:"H:i" }} von {{ article.autor }}
                 </td>

@@ -33,3 +33,10 @@ def blogfilter(request, tag_name):
                'current_tag': tag_name}
 
     return render(request, 'blog/blog.html', context)
+
+
+def article(request, article_name):
+    htmlpath = article_name + ".html"
+    context = {'article': article_name,
+               'htmlpath': htmlpath}
+    return render(request, 'blog/article.html', context)

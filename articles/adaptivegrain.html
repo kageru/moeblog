@@ -1,0 +1,252 @@
+<a href="blog.php">
+    <div class="bottom_right_div"><img src="res/2hu.png"></div>
+</a>
+<div id="overlay" aria-hidden="true" onclick="removefull()"></div>
+<div class="wrapper_article">
+    <p class="heading">Adaptive Graining Methods</p>
+    <div class="content">
+        <ul>
+            <li><a href="#c_abstract">Abstract</a></li>
+            <li><a href="#c_demo">Demonstration and Examples</a></li>
+            <li><a href="#c_script">Theory and Explanation</a></li>
+            <li><a href="#c_performance">Performance</a></li>
+            <li><a href="#c_usage">Usage</a></li>
+            <li><a href="#c_outtro">Closing Words and Download</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <p class="subhead"><a href="#c_abstract" id="c_abstract">Abstract</a></p>
+        In order to remedy the effects of lossy compression of digital media files, dither is applied to randomize
+        quantization errors and thus avoid or remove distinct patterns which are perceived as unwanted artifacts. This
+        can be used to remove banding artifacts by adding random pixels along banded edges which will create the
+        impression of a smoother gradient. The resulting image will often be more resilient to lossy compression, as the
+        added information is less likely to be omitted by the perceptual coding algorithm of the encoding software.
+        <br>Wikipedia explains it like this:
+        <div class="code">
+            High levels of noise are almost always undesirable, but there are cases when a certain amount of noise is
+            useful, for example to prevent discretization artifacts (color banding or posterization). [. . .] Noise
+            added for such purposes is called dither; it improves the image perceptually, though it degrades the
+            signal-to-noise ratio.
+        </div>
+        <p>
+            In video encoding, especially regarding anime, this is utilized by debanding filters to improve their
+            effectiveness and to “prepare” the image for encoding. While grain may be beneficial under some
+            circumstances, it is generally perceived as an unwanted artifact, especially in brighter scenes where
+            banding
+            artifacts would be less likely to occur even without dithering. Most Blu-rays released today will already
+            have
+            grain in most scenes which will mask most or even all visual artifacts, but for reasons described <a
+                href="article.php?p=grain">here</a>, it may be beneficial to remove this grain.</p>
+        <p>
+            As mentioned previously, most debanding filters will add grain to the image, but in some cases this grain
+            might
+            be either to weak to mask all artifacts or to faint, causing it to be removed by the encoding software,
+            which in
+            turn allows the banding to resurface. In the past, scripts like GrainFactory were written to specifically
+            target
+            dark areas to avoid the aforementioned issues without affecting brighter scenes.</p>
+        <p>
+            This idea can be further expanded by using a continuous function to determine the grain's strength based on
+            the
+            average brightness of the frame as well as the brightness of every individual pixel. This way, the problems
+            described above can be solved with less grain, especially in brighter areas and bright scenes where the dark
+            areas are less likely to the focus of the viewer's attention. This improves the perceived quality of the
+            image
+            while simultaneously saving bitrate due to the absence of grain in brighter scenes and areas.
+        </p>
+        <p class="subhead"><a href="#c_demo" id="c_demo">Demonstration and Examples</a></p>
+        Since there are two factors that will affect the strength of the grain, we need to analyze the brightness of any
+        given frame before applying any grain. This is achieved by using the PlaneStats function in Vapoursynth. The
+        following clip should illustrate the results. The brightness of the current frame is always displayed in the top
+        left-hand corner. The surprisingly low values in the beginning are caused by the 21:9 black bars. <span
+            style="font-size: 70%; color: #aaaaaa;">(Don't mind the stuttering in the middle. That's just me being bad)</span>
+        <br><br>
+        <video width="1280" height="720" controls>
+            <source src="blog/res_adg/adg_luma.mp4" type="video/mp4">
+        </video>
+        <br>
+        <div style="font-size: 80%;text-align: right">You can <a href="blog/res_adg/adg_luma.mp4">download the video</a>
+            if your browser is not displaying it correctly.
+        </div>
+        In the dark frames you can see banding artifacts which were created by x264's lossy compression algorithm.
+        Adding grain fixes this issue by adding more randomness to the gradients.<br><br>
+        <video width="1280" height="720" controls>
+            <source src="blog/res_adg/adg_grained.mp4" type="video/mp4">
+        </video>
+        <br>
+        <div style="font-size: 80%;text-align: right"><a href="blog/res_adg/adg_grained.mp4">Download</a></div>
+        By using the script described above, we are able to remove most of the banding without lowering the crf,
+        increasing aq-strength, or graining other surfaces where it would have decreased the image quality.
+        <p class="subhead"><a href="#c_script" id="c_script">Theory and Explanation</a></p>
+        The script works by generating a copy of the input clip in advance and graining that copy. For each frame in the
+        input clip, a mask is generated based on the frame's average luma and the individual pixel's value. This mask is
+        then used to apply the grained clip with the calculated opacity. The generated mask for the previously used clip
+        looks like this:<br><br>
+        <video width="1280" height="720" controls>
+            <source src="blog/res_adg/adg_mask.mp4" type="video/mp4">
+        </video>
+        <br>
+        <div style="font-size: 80%;text-align: right"><a href="blog/res_adg/adg_mask.mp4">Download</a></div>
+        The brightness of each pixel is calculated using this polynomial:
+        <div class="code">
+            z = (1 - (1.124x - 9.466x^2 + 36.624x^3 - 45.47x^4 + 18.188x^5))^(y^2 * <span
+                style="color: #e17800">10</span>)
+        </div>
+        where x is the luma of the current pixel, y is the current frame's average luma, and z is the resulting pixels
+        brightness. The highlighted number (10) is a parameter called luma_scaling which will be explained later.
+        <p>
+            The polynomial is applied to every pixel and every frame. All luma values are floats between 0 (black) and 1
+            (white). For performance reasons the precision of the mask is limited to 8&nbsp;bits, and the frame
+            brightness is rounded to 1000 discrete levels.
+            All lookup tables are generated in advance, significantly reducing the number of necessary calculations.</p>
+        <p>
+            Here are a few examples to better understand the masks generated by the aforementioned polynomial.</p>
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 33%"><img src="blog/res_adg/y0.2.svg"></td>
+                <td style="width: 33%"><img src="blog/res_adg/y0.5.svg"></td>
+                <td style="width: 33%"><img src="blog/res_adg/y0.8.svg"></td>
+            </tr>
+        </table>
+        <p>
+            Generally, the lower a frame's average luma, the more grain is applied even to the brighter areas. This
+            abuses
+            the fact that our eyes are instinctively drawn to the brighter part of any image, making the grain less
+            necessary in images with an overall very high luma.</p>
+        Plotting the polynomial for all y-values (frame luma) results in the following image (red means more grain and
+        yellow means less or no grain):<br>
+        <img style="width: 100%; margin: -5em 0" src="blog/res_adg/preview.svg">
+        <br>
+        More detailed versions can be found <a href="blog/res_adg/highres.svg">here</a> (100 points per axis) or <a
+            href="blog/res_adg/superhighres.7z">here</a> (400 points per axis).<br>
+        Now that we have covered the math, I will quickly go over the Vapoursynth script.<br>
+        <div class="spoilerbox_expand_element">Click to expand code<p class="vapoursynth">
+            <br>import vapoursynth as vs
+            <br>import numpy as np
+            <br>import functools
+            <br>
+            <br>def adaptive_grain(clip, source=None, strength=0.25, static=True, luma_scaling=10, show_mask=False):
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;def fill_lut(y):
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = np.arange(0, 1, 1 / (1 << src_bits))
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z = (1 - (1.124 * x - 9.466 * x ** 2 + 36.624 * x ** 3 -
+            45.47 * x ** 4 + 18.188 * x ** 5)) ** (
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(y ** 2) * luma_scaling) * ((1
+            << src_bits) - 1)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z = np.rint(z).astype(int)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return z.tolist()
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;def generate_mask(n, clip):
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frameluma =
+            round(clip.get_frame(n).props.PlaneStatsAverage * 999)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;table = lut[int(frameluma)]
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return core.std.Lut(clip, lut=table)
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;core = vs.get_core(accept_lowercase=True)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;if source is None:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source = clip
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;if clip.num_frames != source.num_frames:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError('The length of the filtered and
+            unfiltered clips must be equal')
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;source = core.fmtc.bitdepth(source, bits=8)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;src_bits = 8
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;clip_bits = clip.format.bits_per_sample
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;lut = [None] * 1000
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;for y in np.arange(0, 1, 0.001):
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lut[int(round(y * 1000))] = fill_lut(y)
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;luma = core.std.ShufflePlanes(source, 0, vs.GRAY)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;luma = core.std.PlaneStats(luma)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;grained = core.grain.Add(clip, var=strength, constant=static)
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;mask = core.std.FrameEval(luma, functools.partial(generate_mask, clip=luma))
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;mask = core.resize.Bilinear(mask, clip.width, clip.height)
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;if src_bits != clip_bits:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask = core.fmtc.bitdepth(mask, bits=clip_bits)
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;if show_mask:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return mask
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;return core.std.MaskedMerge(clip, grained, mask)
+        </p></div><br>
+        <b>Thanks to Frechdachs for suggesting the use of std.FrameEval.</b><br>
+        <br>
+        In order to adjust for things like black bars, the curves can be manipulated by changing the luma_scaling
+        parameter. Higher values will cause comparatively less grain even in darker scenes, while lower
+        values will increase the opacity of the grain even in brighter scenes.
+        <!--
+        <p class="subhead"><a id="c_performance" href="#c_performance">Performance</a></p>
+        <p>Essentially, this script does two things. It analyzes the average brightness of every frame and generates a
+            mask. Luma analysis is done with one of the core functions and should have no impact on the encoding
+            performance.<br>
+            The mask generation should also have virtually no impact on the encode, as the lookup tables
+            are generated within seconds and then reused for all frames. I cannot time the involved core functions
+            (core.std.lut and core.std.MaskedMerge)
+            accurately, but neither of them is particularly expensive, so the performance cost should be negligible.<br>
+            Don't expect a notable difference in encoding performance.
+	-->
+        </p>
+        <p class="subhead"><a id="c_usage" href="#c_usage">Usage</a></p>
+        The script has four parameters, three of which are optional.
+        <table class="paramtable">
+            <tr>
+                <td>Parameter</td>
+                <td>[type, default]</td>
+                <td class="paramtable_main">Explanation</td>
+            </tr>
+            <tr>
+                <td>clip</td>
+                <td>[clip]</td>
+                <td>The filtered clip that the grain will be applied to</td>
+            </tr>
+            <!--
+            <tr>
+                <td>source</td>
+                <td>[clip, None]</td>
+                <td>The source clip which will be used for the luma mask. For performance reasons this should be the
+                    unfiltered source clip. If you changed the length of your filtered clip with Trim or similar
+                    filters, also apply those filters here, but do not denoise, deband, or otherwise filter
+                    this clip. If unspecified, the clip argument will be used.
+                </td>
+            </tr>
+            -->
+            <tr>
+                <td>strength</td>
+                <td>[float, 0.25]</td>
+                <td>Strength of the grain generated by AddGrain.</td>
+            </tr>
+            <tr>
+                <td>static</td>
+                <td>[boolean, True]</td>
+                <td>Whether to generate static or dynamic grain.</td>
+            </tr>
+            <tr>
+                <td>luma_scaling</td>
+                <td>[float, 10]</td>
+                <td>This values changes the general grain opacity curve. Lower values will generate more grain, even in
+                    brighter scenes, while higher values will generate less, even in dark scenes.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <p class="subhead"><a href="#c_outtro" id="c_outtro">Closing Words</a></p>
+        <p>
+            Grain is a type of visual noise that can be used to mask discretization if used correctly. Too much grain
+            will
+            degrade the perceived quality of a video, while to little grain might be destroyed by the perceptual coding
+            techniques used in many popular video encoders.</p>
+        <p>
+            The script described in this article aims to apply the optimal amount of grain to all scenes to prevent
+            banding artifacts without having a significant impact on the perceived image quality or the required
+            bitrate.
+            It does this by taking the brightness of the frame as a whole and every single pixel into account and
+            generating an opacity mask based on these values to apply grain to certain areas of each frame. This can be
+            used to supplement or even replace the dither generated by other debanding scripts. The script has a
+            noticeable but not significant impact on encoding performance.
+        </p>
+        <div class="download_centered"><a href="https://github.com/Irrational-Encoding-Wizardry/kagefunc/blob/master/kagefunc.py">Download</a></div>
+        <br><br><span style="color: #251b18; font-size: 50%; text-align: left">There's probably a much simpler way to do this, but I like this one. fite me m8</span>
+    </div>
+</div>

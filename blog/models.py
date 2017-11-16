@@ -7,7 +7,6 @@ class Article(models.Model):
     pub_date = models.DateTimeField('date published')
     autor = models.CharField(max_length=32)
     description = models.TextField()
-    url = models.URLField()
 
     def __str__(self):
         return self.title

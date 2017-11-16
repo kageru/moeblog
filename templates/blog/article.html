@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    {% load static %}
+    <script src="{% static 'highlight.pack.js' %}"></script><link rel="stylesheet" href="{% static 'monokai-sublime.css' %}"><script>hljs.initHighlightingOnLoad();</script>
+    <title>{{article}}</title>
+</head>
+<body>
+
+{% include "header.html" %}
+
+{% include htmlpath %}
+
+{% include "footer.html" %}
+
+</body>
+</html>
