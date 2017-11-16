@@ -26,7 +26,6 @@
             post.pub_date|time:"H:i" }} von {{ post.autor }}</p>
         <p>{{ post.content }}</p>
     </div>
-</div>
 
 <h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
 
@@ -39,7 +38,6 @@
     <p><input type='submit' name='submit' value='Submit'></p>
 </form>
 
-<div id="wrapper">
     {% for comment in comments %}
     <div class="comment_div">
         <p style="font-weight:600">' {{comment.comment_date}} {{comment.autor}}
