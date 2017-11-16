@@ -36,7 +36,7 @@ def blogfilter(request, tag_name):
 
 
 def article(request, article_name):
-    htmlpath = article_name + ".html"
+    htmlpath = str(Article.objects.get(title=article_name).htmlname) + ".html"
     context = {'article': article_name,
                'htmlpath': htmlpath}
     return render(request, 'blog/article.html', context)
