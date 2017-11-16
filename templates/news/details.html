@@ -10,8 +10,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
 
     <title>Blog - {{ post.title }} </title>
 </head>
@@ -21,10 +21,34 @@
 
 <div id="wrapper">
     <div>
-    <h1 class="accent1"> {{ post.title }} </h1>
-    <p style="font-size: 75%">Gepostet am {{ post.pub_date|date:"d" }}. {{ post.pub_date|date:"M Y" }} um {{ post.pub_date|time:"H:i" }} von {{ post.autor }}</p>
-    <p>{{ post.content }}</p>
+        <h1 class="accent1"> {{ post.title }} </h1>
+        <p style="font-size: 75%">Gepostet am {{ post.pub_date|date:"d" }}. {{ post.pub_date|date:"M Y" }} um {{
+            post.pub_date|time:"H:i" }} von {{ post.autor }}</p>
+        <p>{{ post.content }}</p>
     </div>
+</div>
+
+<h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
+
+<form id='comment_box' class='add_comment' action='' method='post'>
+    <p><label>Your name</label><br/><input type='text' name='creator' value=''></p>
+
+    <p><label>Message</label><br/>
+        <textarea id=comment_input name='message' cols='60' rows='10'></textarea></p>
+
+    <p><input type='submit' name='submit' value='Submit'></p>
+</form>
+
+<div id="wrapper">
+    {% for comment in comments %}
+    <div class="comment_div">
+        <p style="font-weight:600">' {{comment.comment_date}} {{comment.autor}}
+            <a id="com' . $row['commentID'] . '" style="font-size:60%;margin-left:3em;color:grey">(ID: ' .
+                $row['commentID'] . ')</a>
+            <span class="reply fakelink" onclick="replyToComment({{comment.id}})"></span></p>
+        <p class="comment">{{comment.content}}</p></div>
+    <br><br>
+    {% endfor %}
 </div>
 
 </body>

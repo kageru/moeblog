@@ -26,35 +26,6 @@ if ($lang == 'ger') {
     $ui_reply = 'Reply';
 }
 
-require_once('includes/config.php');
-
-if (isset($_POST['hide']) && $user->is_logged_in()) {
-
-    $stmt = $db->prepare('UPDATE comments SET approved = false WHERE commentID = :commentID');
-    $stmt->execute(array(':commentID' => $_POST['commentID']));
-
-    header('Location: #comment_box');
-    exit;
-}
-
-if (isset($_POST['NUKE']) && $user->is_logged_in()) {
-
-    $stmt = $db->prepare('DELETE FROM comments WHERE commentID = :commentID');
-    $stmt->execute(array(':commentID' => $_POST['commentID']));
-
-    header('Location: #comment_box');
-    exit;
-}
-
-if (isset($_POST['approve']) && $user->is_logged_in()) {
-
-    $stmt = $db->prepare('UPDATE comments SET approved = true WHERE commentID = :commentID');
-    $stmt->execute(array(':commentID' => $_POST['commentID']));
-
-    header('Location: #comment_box');
-    exit;
-}
-
 
 if (isset($_POST['submit'])) {
 
@@ -144,28 +115,6 @@ if (isset($_POST['submit'])) {
             '</span></p><p class="comment">' . $row['message'] . '</p></div><br><br>');
         $num++;
     }
-    if ($user->is_logged_in()) {
-        $stmt = $db->prepare('SELECT commentID, message, creator, site, postDate FROM comments WHERE site = :site AND approved = false ORDER BY commentID ASC');
-        $stmt->execute(array(':site' => $id));
-        while ($row = $stmt->fetch()) {
-            /* 0.5 Rem, just like number of them that survived betelgeuse */
-            echo '<div class="comment_div" style="border: solid 2px #A50000; padding: 0.5em; position: relative; border-radius: 15px; margin-bottom: 1rem">';
-
-            echo '<form action="" style="text-align:right; position: absolute; right: 0.5rem; top: 1.5em" method="post">';
-            echo '<input type="hidden" name="commentID" value=' . $row['commentID'] . '>';
-            echo '<input class="error nuke" type="submit" name="NUKE" value="NUKE">';
-            echo '</form>';
-
-            echo '<form action="" style="text-align:right; position: absolute; right: 0.5rem; top: 4em;" method="post">';
-            echo '<input type="hidden" name="commentID" value=' . $row['commentID'] . '>';
-            echo '<input class="approve" type="submit" name="approve" value="approve">';
-            echo '</form>';
-
-            echo('<p style="font-weight:600">' . date($ui_time, strtotime($row['postDate'])) . ' '
-                . $row['creator'] . $ui_said . ' </p><p class="comment">' . $row['message'] . '</p></div>');
-        }
-    }
-
 
     if ($num == 0) {
         echo '<p>' . $ui_nocomments . '</p>';
