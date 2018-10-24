@@ -10,9 +10,25 @@ body {
 }
 
 header {
+    z-index: 50;
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: auto;
+    height: 5em;
+    box-shadow:0 2px 4px rgba(0,0,0,.5);
     margin: 0;
+}
+
+.showheader{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+
+.dontshowheader{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
 }
 
 header * {
@@ -48,7 +64,7 @@ h3 {
 footer {
     width: 100%;
     position: relative;
-    margin-top: 10%;
+    margin-top: 2.5%;
     z-index: 0;
 }
 
@@ -93,25 +109,28 @@ footer {
 
 .headertable {
     height: auto;
-    width: 100%;
+    margin: auto;
+    width: 50%;
 }
 
-header img {
-    margin: 0 !important;
-    -webkit-filter: saturate(1);
-    filter: saturate(1);
+.headerlink{
+    font-size: 30px;
+    display: inline-block;
+    line-height: 72px;
+    transition: color .1s cubic-bezier(.4,0,.2,1);
+    background-color: transparent;
+    text-decoration: none;
     transition-duration: 300ms;
 }
 
-header img:hover {
-    transition-duration: 300ms;
-    -webkit-filter: saturate(1.5);
-    filter: saturate(1.5);
+.headerelement {
+    width: 25%; 
+    text-align: center;
 }
 
 ::-webkit-scrollbar {
     width: 0.8em;
-    background-color: #292929;
+    background-color: #202020;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -215,10 +234,6 @@ hr {
     right: 0;
 }
 
-.chatangobg {
-    z-index: -2;
-}
-
 .leftdiv {
     left: 0;
     width: 60%;
@@ -232,6 +247,7 @@ hr {
 #wrapper {
     text-align: left;
     margin: auto;
+    margin-top: 7em;
     width: 50%;
 }
 
@@ -240,6 +256,7 @@ hr {
     max-width: 90% !important;
     width: 1280px;
     margin: 0 auto;
+    margin-top: 7em;
 }
 
 .content {
@@ -269,6 +286,7 @@ hr {
 }
 
 .subhead {
+    line-height: 120%;
     letter-spacing: 1px;
     font-size: 160%;
     margin-top: 1em;

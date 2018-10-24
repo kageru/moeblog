@@ -5,7 +5,6 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
 
     <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
@@ -22,15 +21,20 @@
 <div id="wrapper">
     <div>
         <h1 class="accent1"> {{ post.title }} </h1>
-        <p style="font-size: 75%">Gepostet am {{ post.pub_date|date:"d" }}. {{ post.pub_date|date:"M Y" }} um {{
-            post.pub_date|time:"H:i" }} von {{ post.autor }}</p>
-        <p>{{ post.content }}</p>
+        <p style="font-size: 75%">Gepostet am {{ post.pub_date|date:"d" }}. {{ post.pub_date|date:"M Y" }} um
+            {{ post.pub_date|time:"H:i" }} von {{ post.autor }}</p>
+        <p>
+            {% autoescape off %}
+                {{ post.content|linebreaks }}
+            {% endautoescape %}
+        </p>
     </div>
 
     <h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
 
-    <form id='comment_box' class='add_comment' action='' method='post'>
-        <p><label>Your name</label><br/><input type='text' name='creator' value=''></p>
+    <form id='comment_box' class='add_comment' action="{% url 'detail' post.id %}" method='post'>
+        {% csrf_token %}
+        <p><label>Your name</label><br/><input type='text' name='creator'></p>
 
         <p><label>Message</label><br/>
             <textarea id=comment_input name='message' cols='60' rows='10'></textarea></p>
@@ -40,12 +44,11 @@
 
     {% for comment in comments %}
     <div class="comment_div">
-        <p style="font-weight:600">' {{comment.comment_date}} {{comment.autor}}
-            <a id="com' . $row['commentID'] . '" style="font-size:60%;margin-left:3em;color:grey">(ID: ' .
-                $row['commentID'] . ')</a>
-            <span class="reply fakelink" onclick="replyToComment({{comment.id}})"></span></p>
+        <p style="font-weight:600"> {{comment.comment_date|date:"d" }}. {{comment.comment_date|date:"M Y" }} um {{comment.comment_date|time:"H:i" }} by {{comment.author}}
+            <a id="com{{comment.id}}" style="font-size:60%;margin-left:3em;color:grey"><!--(ID: {{comment.id}})--></a>
+           <!-- <span class="reply fakelink" onclick="replyToComment({{comment.id}})"></span></p>-->
         <p class="comment">{{comment.content}}</p></div>
-    <br><br>
+    <br><hr><br>
     {% endfor %}
 </div>
 

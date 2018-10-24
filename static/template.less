@@ -1,0 +1,206 @@
+// compiler at http://less2css.org/
+@use-this-to-test-colors: hsl(69, 100%, 50%);
+// hue in degree. 0 = 360 = red
+@accent-primary-hue: 33;
+@accent-secondary-hue: 33;
+@link_color: #86cbd2;
+// brightness in percent; 100 = white
+@accent-brightness: 60;
+@overall-brightness: 10;
+
+@text-brightness: abs(@overall-brightness - 90);
+@accent-primary: hsl(@accent-primary-hue, 100%, @accent-brightness);
+@accent-secondary: hsl(@accent-secondary-hue, 100%, @accent-brightness);
+@a-dim: none;
+@accent-dim: none;
+@image-filter: none;
+& when (@text-brightness >= @overall-brightness) {
+  // dark design
+  @accent-dim: hsl(@accent-primary-hue, 50%, @accent-brightness/2);
+  @a-dim: hsl(@accent-primary-hue, 80%, @text-brightness/2);
+  @image-filter: invert() hue-rotate(180deg);
+  @svg-filter: hue-rotate(33-@accent-primary-hue);
+}
+
+& when (@text-brightness < @overall-brightness) {
+  // light design
+  @accent-dim: hsl(@accent-primary-hue, 50%, max(@accent-brightness*2, 100));
+  @a-dim: hsl(@accent-primary-hue, 80%, max(@text-brightness*2, 100));
+  @image_filter: none;
+  @svg-filter: hue-rotate(33-@accent-primary-hue) invert();
+}
+
+@text: hsl(0, 0%, @text-brightness);
+@div-bgs: hls(@accent-primary-hue, 10, 10, 0.5);
+
+body {
+  background: hsl(@accent-primary-hue, 10%, @overall-brightness) url("../res/bg.png") repeat fixed;
+  color: @text;
+}
+
+footer {
+  background-color: @div-bgs;
+}
+
+footer a {
+  color: @a-dim;
+}
+
+.dropdowntable td {
+  background-color: hls(@accent-primary-hue, 10, @overall-brightness);
+}
+
+.dropdowntable td:hover {
+  background-color: hls(@accent-primary-hue, 15, max(@overall-brightness+10, 100));
+}
+
+::selection {
+  background-color: transparent;
+  color: @accent-primary;
+}
+
+hr {
+  color: @accent-dim;
+  background-color: @accent-dim;
+}
+
+.sidebardiv {
+  background-color: @div-bgs;
+}
+
+.ninjatext {
+  color: @accent-dim;
+}
+
+.chatangobg {
+  background-color: @div-bgs;
+  border: solid 1px @accent-primary;
+}
+
+.chatangodiv {
+  border-top: solid 1px @accent-primary;
+}
+
+.hover_link:hover {
+  color: @link_color !important;
+}
+
+
+.ninjalink, .hover_link {
+  color: @text !important;
+}
+
+a, .fakelink{
+  color: @link_color;
+  text-decoration: none;
+}
+
+.heading {
+  color: @accent-primary;
+}
+
+.subhead {
+  color: @accent-primary;
+}
+
+form.add_comment * {
+  color: @text;
+}
+
+form.add_comment * :focus {
+  border: solid 2px hsl(@accent-primary-hue, 100%, 40%);
+}
+
+form.add_comment input[type=text] {
+  border: solid 2px @accent-primary;
+}
+
+form.add_comment input[type=text]:focus {
+  border: solid 2px hsl(@accent-primary-hue, 100%, 50%);
+}
+
+form.add_comment textarea {
+
+  border: solid 2px @accent-primary;
+}
+
+form.add_comment input[type=submit] {
+  background-color: @accent-primary;
+  border: solid 2px @accent-primary;
+  color: hsl(@accent-primary-hue, 10%, @overall-brightness);
+}
+
+form.add_comment input[type=submit]:hover {
+  color: @text;
+}
+
+.comment_div {
+  outline: @accent-primary;
+}
+
+code, .code {
+  border: solid 1px #bbb;
+  background-color: rgba(74, 74, 74, 0.25);
+}
+
+.vapoursynth {
+  border: solid 1px #0084c4;
+  background-color: rgba(0, 42, 65, 0.25);
+}
+
+.avisynth {
+  border: solid 1px #2a9500;
+  background-color: rgba(19, 65, 0, 0.25);
+}
+
+.error {
+  border: 2px solid #A50000;
+  color: #A50000;
+}
+
+.error:hover {
+  color: @text;
+  background-color: #4b0000;
+  border: 2px solid #4b0000;
+}
+
+.reply {
+  border: 2px solid @accent-primary;
+  color: @accent-primary;
+}
+
+.reply:hover {
+  color: @text;
+  background-color: @accent-primary;
+  border: 2px solid @accent-primary;
+}
+
+.approve {
+  border: 2px solid #00a500;
+  color: #00a500;
+}
+
+.approve:hover {
+  color: @text;
+  background-color: #007800;
+  border: 2px solid #007800;
+}
+
+.accent1 *, .accent1 {
+  color: @accent-primary;
+}
+
+.accent2 *, .accent2 {
+  color: @accent-secondary;
+}
+
+.progressbar {
+  background-color: hsl(@accent-primary-hue, 100%, 35%);;
+}
+.progressbar_outline {
+  border: solid 2px @accent-dim;
+}
+
+.ssllabs {
+  filter: @image-filter;
+}

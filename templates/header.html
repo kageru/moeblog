@@ -1,49 +1,10 @@
-<header>
-    <table class="headertable no_border_table">
-        <tr>
-            <td>
-                {% load static %}
-                <img src="{% static "left.jpg" %}"></a>
-            </td>
-            <td>
-                {% load static %}
-                <a href="/news"> <img src="{% static "news.jpg" %}"></a>
-            </td>
-            <td class="dropdown">
-                {% load static %}
-                <img src="{% static "projekte.jpg" %}">
-                <div class="dropdown-content">
-                    <table class="dropdowntable">
-                        <tr>
-                            <td>
-                                <a target="_blank" href="/ddl/fs">Direktdownload</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a target="_blank"
-                                   href="http://www.nyaa.se/?page=separate&user=291801">Torrents</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-            <td>
-                {% load static %}
-                <a href="/blog"><img src="{% static "blog.jpg" %}"></a>
-            </td>
-            <td>
-                {% load static %}
-                <a href="/team"> <img src="{% static "team.jpg" %}"></a>
-            </td>
-            <td>
-                {% load static %}
-                <a href="/faq"> <img src="{% static "faq.jpg" %}"></a>
-            </td>
-            <td>
-                 {% load static %}
-                <img src="{% static "right.jpg" %}">
-            </td>
-        </tr>
-    </table>
+{% load static %}
+<script type="text/javascript" src="{% static 'header.js' %}"></script>
+<header class="showheader" id="header">
+	<table class="headertable">
+		<td class="headerelement"> <a href="/news" class="headerlink">Home</a></td>
+		<td class="headerelement"> <a href="/blog" class="headerlink" >Blog</a></td>
+        <td class="headerelement"> <a href="/ddl/fs" class="headerlink">Downloads</a></td>
+        <td class="headerelement"> <a href="/faq" class="headerlink">Faq</a></td>
+	</table>
 </header>

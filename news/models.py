@@ -5,7 +5,6 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=255)
     pub_date = models.DateTimeField('date published')
-    autor = models.CharField(max_length=32)
     description = models.TextField()
     content = models.TextField()
 
@@ -14,10 +13,18 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    autor = models.CharField(max_length=32)
+    author = models.CharField(max_length=32)
     content = models.TextField()
     comment_date = models.DateTimeField('date published')
     post_id = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self):
         return 'Author: ' + str(self.autor) + ' Comment: ' + str(self.content)[0:20]
+
+
+class Author(models.Model):
+	post_id = models.ForeignKey('Post', on_delete=models.CASCADE)
+	name = models.CharField(max_length=32)
+
+	def __str__(self):
+		return self.post_id.title + ' - ' + self.name

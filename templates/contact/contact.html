@@ -5,7 +5,6 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
 
     <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
@@ -13,26 +12,55 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 
-    <title>Impressum</title>
+    <title>Team</title>
 </head>
 <body>
 
-<a href="/">
-    {% load static %}
-    <div class="bottom_right_div"><img src="{% static '2hu.png' %}"></div>
-</a>
-<div class="contentwrap">
-    <p class="heading">Contact</p>
-    <div style="font-size: 150%">
-        Discord:<br>
-        Main author and server admin: kageru#7109<br>
-        Supreme Meme Lord, x265 proselytizer, and also server admin: Attila#3924<br>
-        Magister Linguarum and Conoisseur of unpronouncable words: fredferguson#0255<br><br><br><br>
-        <img class="ssllabs" src="http://i.kageru.moe/kk1H5.png" style="width: 800px">
-        <br><br><br>
-        Click Patchouli (the girl in the bottom right-hand corner) to go back to the index ==>
-    </div>
+{% include "header.html" %}
+
+<div id="wrapper">
+    <h1 class="accent1">
+        Über uns
+    </h1>
+    <h2 class="accent1">Allgemein</h2>
+    <p> <s>Wir sind ein paar Studenten mit zu viel Freizeit, die der Meinung sind, dass das <a
+            href="https://de.wikipedia.org/wiki/%C3%96konomisches_Prinzip#Extremumprinzip_.28auch_Optimumprinzip.29"
+            target="_blank">Optimalprinzip</a>
+        dem
+        <a href="https://de.wikipedia.org/wiki/%C3%96konomisches_Prinzip#Maximalprinzip"
+           target="_blank">Maximalprinzip</a> in einigen Situationen überlegen sein kann, von der deutschen Fansubszene
+        jedoch sträflich vernachlässigt wird. Das bedeutet nicht, dass unsere Subs deswegen von niedrigerer Qualität
+        sind. Wir investieren unsere Zeit lediglich in die relevanten Komponenten des Endprodukts. Ich möchte betonen,
+        dass wir keine Speedsubgruppe sind. Wir werden niemals z.B. den QC auslassen, um schneller zu releasen. Wir
+        haben lediglich andere Prioritäten.</s> Die Zeit des Studententums ist für die meisten von uns leider vorbei und wir
+        haben etwas mehr zu tun als früher, aber wenn zwischendurch mal wieder ein Release kommt, sind unsere Standards
+        weiterhin dieselben.</p>
+    <h2 class="accent1">Mitglieder
+    </h2>
+    <h3 class="accent1">
+        kageru
+    </h3>
+    <p>
+        Aufgaben: Übersetzung, Edit, QC, Encode, Type, Kara, Webdesign und Administration</br>
+        Über mich: Ich bin wohl Schuld an dem Ganzen, weil ich auf die sonderbare Idee kam, ein paar Freunde
+        dazu zu zwingen, mit mir irgendwelche Texte unter japanische Cartoons zu setzen.</br>
+        Mir „gehört“ unser Blog, auf dem ich ab und zu über Encoding schreibe und auch meine übrige Freizeit 
+        ist mit ähnlich sinnvollen Betätigungen gefüllt, wie QC
+        bei anderen Gruppen (Kampfkuchen, Chinu, Melon) zu machen oder
+        Pokémon zu spielen und mich über unfähige und unvorhersehbare Gegner aufzuregen. Das
+        improvisierte Webdesign dieser Seite ist übrigens auch von mir und das kleine 'k' im Namen ist Absicht.</br>
+        Erreichbar via Discord @kageru#1337
+    </p>
+    <h3 class="accent1">Attila</h3>
+    <p>
+        Aufgaben: Website-Entwicklung und Administration, irgendwann bestimmt mal wieder irgendein Encode</br>
+        Über mich: Lang lang ists her, da war ich mal voller Motivation zu subben.</br>
+        Diese Zeit ist leider vorbei, aber immerhin die Website hier entwickel ich noch weiter.</br>
+        Erreichbar via Discord @Attila#3924
+    </p>
 </div>
+
+{% include "footer.html" %}
 
 </body>
 </html>

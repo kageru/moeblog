@@ -27,5 +27,7 @@ urlpatterns = [
     url(r'^team/', views.team, name='team'),
     url(r'^news/', include('news.urls')),
     url(r'^blog/', include('blog.urls')),
+    url(r'^api/', include('ci.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^video/', views.troll, name='troll'),
 ]

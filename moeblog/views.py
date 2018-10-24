@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -15,6 +15,10 @@ def contact(request):
 
 def team(request):
     return render(request, 'team/team.html')
+
+
+def troll(request):
+    return redirect('https://www.fbi.gov/tips')
 
 
 def handler404(request):

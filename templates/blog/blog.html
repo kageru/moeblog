@@ -5,7 +5,6 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'darkorange.css' %}"/>
 
     <link href="https://fonts.googleapis.com/css?family=Alike|Lato" rel="stylesheet">
@@ -23,6 +22,10 @@
     <div class="progressdiv sidebardiv leftdiv">
         <p style="font-weight: 700; margin-bottom: 1em"> Filter by tags </p>
 
+        {% for author in authors %}
+        <p style="margin-bottom: 1em"><a class="hover_link" href="{% url 'blogfilter' author.name %}"> {{ author.name }} </a>
+        </p>
+        {% endfor %}
         {% for tag in tags %}
         <p style="margin-bottom: 1em"><a class="hover_link" href="{% url 'blogfilter' tag.name %}"> {{ tag.name }} </a>
         </p>
@@ -46,9 +49,14 @@
         <p> {{ article.description }} </p>
         <table class="two_column_table no_border_table">
             <tr>
-                <td style="text-align: left"><a href="{% url 'article' article.title %}">Read more…</a></td>
+                <td style="text-align: left"><a href="{% url 'article' article.htmlname %}">Read more…</a></td>
                 <td style="font-size: 75%; text-align: right">Gepostet am {{ article.pub_date|date:"d" }}.
-                    {{ article.pub_date|date:"M Y" }} um {{ article.pub_date|time:"H:i" }} von {{ article.autor }}
+                    {{ article.pub_date|date:"M Y" }} um {{ article.pub_date|time:"H:i" }} von 
+                        {% for articleid_and_author in articleids_and_authors %}
+                            {% if article == articleid_and_author.article_id %} 
+                                {{articleid_and_author.name}}
+                            {% endif %}
+                        {% endfor %}
                 </td>
             </tr>
         </table>

@@ -3,10 +3,6 @@ body {
     color: #ccc;
 }
 
-footer {
-    background-color: rgba(26, 23, 20, 0.51);
-}
-
 footer a {
     color: #d26900;
 }
@@ -60,6 +56,18 @@ hr {
 
 .ninjalink {
     color: #cccccc;
+}
+
+.headerlink{
+    color: #9e9e9e;
+}
+
+header{
+	background-color: #202020;
+}
+
+header a:hover {
+    color: #cd7100;
 }
 
 a {
