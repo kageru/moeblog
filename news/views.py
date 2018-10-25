@@ -1,5 +1,6 @@
 import datetime
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 from .models import Post
 from .models import Comment
 from .models import Author
@@ -24,6 +25,9 @@ def detail(request, post_id):
                                                   content=str(request.POST.get("message")), post_id=post,
                                                   comment_date=datetime.datetime.now())
             this_comment.save()
+
+            return redirect('')
+            #hier redirect einfügen
 
     comments = Comment.objects.filter(post_id=post_id).order_by('-comment_date')
 
