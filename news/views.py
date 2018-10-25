@@ -26,8 +26,12 @@ def detail(request, post_id):
                                                   comment_date=datetime.datetime.now())
             this_comment.save()
 
-            return redirect('')
-            #hier redirect einfügen
+            comments = Comment.objects.filter(post_id=post_id).order_by('-comment_date')
+
+            context = {'post': post,
+                       'comments': comments}
+
+            return redirect(request.path_info, context)
 
     comments = Comment.objects.filter(post_id=post_id).order_by('-comment_date')
 

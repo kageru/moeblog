@@ -11,13 +11,37 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
     <script src="{% static 'highlight.pack.js' %}"></script><link rel="stylesheet" href="{% static 'monokai-sublime.css' %}"><script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static 'script.js' %}"></script>
     <title>{{article}}</title>
 </head>
 <body>
 
 {% include "header.html" %}
 
-{% include htmlpath %}
+{% include html_path %}
+
+<div id="wrapper">
+    <h2 class="accent1" style="text-align: center; margin-top: 10rem;">Leave a comment</h2>
+
+    <form id='comment_box' class='add_comment' action="{% url 'article' article.htmlname %}" method='post'>
+        {% csrf_token %}
+        <p><label>Your name</label><br/><input type='text' name='creator'></p>
+
+        <p><label>Message</label><br/>
+            <textarea id=comment_input name='message' cols='60' rows='10'></textarea></p>
+
+        <p><input type='submit' name='submit' value='Submit'></p>
+    </form>
+
+    {% for comment in comments %}
+    <div class="comment_div">
+        <p style="font-weight:600"> {{comment.comment_date|date:"d" }}. {{comment.comment_date|date:"M Y" }} um {{comment.comment_date|time:"H:i" }} by {{comment.author}}
+            <a id="com{{comment.id}}" style="font-size:60%;margin-left:3em;color:grey"><!--(ID: {{comment.id}})--></a>
+           <!-- <span class="reply fakelink" onclick="replyToComment({{comment.id}})"></span></p>-->
+        <p class="comment">{{comment.content}}</p></div>
+    <br><hr><br>
+    {% endfor %}
+</div>
 
 {% include "footer.html" %}
 

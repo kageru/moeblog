@@ -25,3 +25,12 @@ class Author(models.Model):
 
     def __str__(self):
         return self.article_id.title + ' - ' + self.name
+
+class Comment(models.Model):
+    author = models.CharField(max_length=32)
+    content = models.TextField()
+    comment_date = models.DateTimeField('date published')
+    article_id = models.ForeignKey('Article', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'Author: ' + str(self.author) + ' Comment: ' + str(self.content)[0:20]

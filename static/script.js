@@ -71,10 +71,3 @@ function mobile() {
         $("body").css("background-image", "none");
     }
 }
-
-function replyToComment(id) {
-    var commentbox = $('#comment_input').eq(0);
-    var txt = commentbox.val();
-    commentbox.val(txt + '>' + id + ' ');
-    commentbox[0].scrollIntoView();
-}

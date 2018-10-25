@@ -19,12 +19,12 @@ class Comment(models.Model):
     post_id = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'Author: ' + str(self.autor) + ' Comment: ' + str(self.content)[0:20]
+        return 'Author: ' + str(self.author) + ' Comment: ' + str(self.content)[0:20]
 
 
 class Author(models.Model):
-	post_id = models.ForeignKey('Post', on_delete=models.CASCADE)
-	name = models.CharField(max_length=32)
+    post_id = models.ForeignKey('Post', on_delete=models.CASCADE)
+    name = models.CharField(max_length=32)
 
-	def __str__(self):
-		return self.post_id.title + ' - ' + self.name
+    def __str__(self):
+        return self.post_id.title + ' - ' + self.name

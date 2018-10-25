@@ -1,7 +1,10 @@
+import datetime
+
 from django.shortcuts import render
 from .models import Article
 from .models import Tag
 from .models import Author
+from .models import Comment
 # Create your views here.
 
 
@@ -49,7 +52,23 @@ def blogfilter(request, tag_name):
 
 
 def article(request, html_name):
-    htmlpath = str(html_name) + ".html"
-    context = {'article': Article.objects.get(htmlname=html_name).title,
-               'htmlpath': htmlpath}
+    article_id = Article.objects.get(htmlname=html_name)
+
+    if request.method == 'POST':
+        if str(request.POST.get("creator")) != '' and str(request.POST.get("message")) != '':
+            this_comment = Comment.objects.create(author=str(request.POST.get("creator")),
+                                                  content=str(request.POST.get("message")), article_id=article_id,
+                                                  comment_date=datetime.datetime.now())
+            this_comment.save()
+
+            comments = Comment.objects.filter(article_id=article_id).order_by('-comment_date')
+
+            context = {'article': article_id,'comments': comments, 'html_path':str(html_name) + ".html"}
+
+            return redirect(request.path_info, context)
+
+    comments = Comment.objects.filter(article_id=article_id).order_by('-comment_date')
+
+    context = {'article': article_id,'comments': comments, 'html_path':str(html_name) + ".html"}
+
     return render(request, 'blog/article.html', context)
