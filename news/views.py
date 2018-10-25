@@ -19,10 +19,11 @@ def detail(request, post_id):
     post = Post.objects.get(pk=post_id)
 
     if request.method == 'POST':
-        this_comment = Comment.objects.create(author=str(request.POST.get("creator")),
-                                              content=str(request.POST.get("message")), post_id=post,
-                                              comment_date=datetime.datetime.now())
-        this_comment.save()
+        if str(request.POST.get("creator")) != '' and str(request.POST.get("message")) != '':
+            this_comment = Comment.objects.create(author=str(request.POST.get("creator")),
+                                                  content=str(request.POST.get("message")), post_id=post,
+                                                  comment_date=datetime.datetime.now())
+            this_comment.save()
 
     comments = Comment.objects.filter(post_id=post_id).order_by('-comment_date')
 

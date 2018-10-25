@@ -338,7 +338,7 @@ form.add_comment input[type=submit]:hover {
 }
 
 .comment {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 /* misc classes for general use */
