@@ -300,6 +300,10 @@ hr {
     margin-top: 6em;
 }
 
+.smol_text {
+    font-size: 70%;
+}
+
 form.add_comment {
     text-align: center;
 }
