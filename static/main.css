@@ -301,7 +301,12 @@ hr {
 }
 
 .smol_text {
+    font-size: 60%;
+}
+
+.annotation {
     font-size: 70%;
+    text-align: right;
 }
 
 form.add_comment {
