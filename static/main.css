@@ -644,3 +644,7 @@ form input {
     background-color: #6a3700;
     color: #ffffff;
 }
+
+p.content {
+    text-align: justify;
+}
