@@ -2,7 +2,7 @@
 body {
     z-index: -10;
     font-family: 'Lato', 'Segoe UI', sans-serif;
-    font-size: 14pt
+    font-size: 14pt;
     text-align: center;
     align-content: center;
     overflow-y: scroll;
@@ -431,6 +431,12 @@ form.add_comment input[type=submit]:hover {
     width: 70%;
 }
 
+/* We now use hl.js, so code styling is mostly done for us */
+code {
+    font-family: "Hack", "Fira Code", "Lucida Console", monospace;
+}
+
+/* legacy code styling */
 .code {
     font-weight: normal;
     display: block;
